@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/head" />
+
+    <include layout="@layout/line_horizontal_full" />
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="请选择您对医院的评价"
+    android:textColor="@color/class_color3"
+    android:gravity="center"
+    android:textSize="30sp"
+    />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/rb_ever_satisfaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="非常满意"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/rb_satisfaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="满意"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/rb_unsatisfaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="不满意"
+            android:textSize="25sp" />
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/client_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="100px"
+        android:background="@drawable/gray_coner"
+        android:gravity="left|top"
+        android:hint="欢迎您的评价，我们会做得更好！"
+        android:inputType="textMultiLine"
+        android:minLines="20"
+        android:padding="25px"
+        android:singleLine="true"
+        android:textSize="55px" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_submit"
+        android:layout_width="900px"
+        android:layout_height="200px"
+        android:layout_marginTop="150px"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        card_view:cardBackgroundColor="@color/class_color3"
+        card_view:cardCornerRadius="40px"
+        card_view:cardElevation="8px"
+        card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_score_head"
+                style="@style/itemCrawler"
+                android:layout_width="wrap_content"
+                android:text="提交"
+                android:textColor="@color/colorWhite"
+                android:textSize="35sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

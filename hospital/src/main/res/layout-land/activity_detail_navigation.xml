@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#6ccc"
+    android:layout_height="match_parent">
+    <include layout="@layout/head"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+
+            style="@style/nativigation_btn"
+            android:text="楼\n梯" />
+
+        <Button
+            android:id="@+id/btn2"
+            style="@style/nativigation_btn"
+            android:text="厕\n所" />
+
+        <Button
+            android:id="@+id/btn3"
+
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <Button
+            android:id="@+id/btn4"
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <Button
+            android:id="@+id/btn5"
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <Button
+            android:id="@+id/btn6"
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <Button
+            android:id="@+id/btn7"
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <Button
+            android:id="@+id/btn8"
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <Button
+            android:id="@+id/btn9"
+            style="@style/nativigation_btn"
+            android:text="妇\n诊" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <Button
+                android:id="@+id/btn10"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:text="挂\n号\n处"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/btn11"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:text="电梯"
+                android:textSize="40sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn12"
+            style="@style/nativigation_btn"
+            android:text="输液观察室" />
+
+        <Button
+            android:id="@+id/btn13"
+            style="@style/nativigation_btn"
+            android:text="治疗室" />
+
+        <Button
+            android:id="@+id/btn14"
+            style="@style/nativigation_btn"
+            android:text="配药室" />
+
+        <Button
+            android:id="@+id/btn15"
+            style="@style/nativigation_btn"
+            android:text="输液观察室" />
+
+        <Button
+            android:id="@+id/btn16"
+            style="@style/nativigation_btn" />
+
+        <Button
+            android:id="@+id/btn17"
+            style="@style/nativigation_btn" />
+
+        <Button
+            android:id="@+id/btn18"
+            style="@style/nativigation_btn" />
+
+        <Button
+            android:id="@+id/btn_18"
+            style="@style/nativigation_btn"
+            android:text="楼\n梯" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="5">
+        <Button
+            android:text="药物处理"
+            android:id="@+id/btn19"
+            style="@style/nativigation_btn" />
+        <Button
+            android:text="前\n厅"
+            android:id="@+id/btn20"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="病人等候室"
+            android:id="@+id/btn21"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="手术室"
+            android:id="@+id/btn22"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:id="@+id/btn23"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:id="@+id/btn24"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:id="@+id/btn25"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="办\n公"
+            android:id="@+id/btn26"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="术后休息室"
+            android:id="@+id/btn27"
+            style="@style/nativigation_btn"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+           <TextView
+               android:gravity="center"
+               android:layout_width="match_parent"
+               android:text="大厅"
+               android:textColor="#000"
+               android:textSize="50sp"
+               android:layout_height="match_parent" />
+        </RelativeLayout>
+        <Button
+            android:text="取药处"
+            android:id="@+id/btn28"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="更衣室"
+            android:id="@+id/btn29"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="医护办公"
+            android:id="@+id/btn30"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="抢救室"
+            android:id="@+id/btn31"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:text="前\n厅"
+            android:id="@+id/btn32"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:id="@+id/btn33"
+            style="@style/nativigation_btn"/>
+        <Button
+            android:id="@+id/btn34"
+            style="@style/nativigation_btn"/>
+        <Button
+
+            android:text="紧急出口"
+            android:id="@+id/btn35"
+            style="@style/nativigation_btn"/>
+    </LinearLayout>
+
+</LinearLayout>
