@@ -8,16 +8,16 @@ public class Keshi {
 
     public String name;
     public String number;
-    public  int id;
+  //  public  int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public int getId() {
+//        return id;
+//
+//    }
 
     public String getName() {
         return name;

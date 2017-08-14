@@ -34,7 +34,6 @@ import com.zone.hospital.model.bean.Keshi;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -73,8 +72,11 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
     private int currentkeshi;
 
     Timer timer;
+     String[]name={"骨科","儿科","牙科","眼科","耳科","妇科"};
+    static  int []number={3,4,2,12,5,1};
 
-
+    //科室选中ID
+    private int ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,13 +101,28 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
         adapter=new HospitalAdapter(CallNumActivity.this
                 ,R.layout.item_keshi ,keshiLists);
 
-         timer=new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                requestData();
-            }
-        },1000,5000);
+//         timer=new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                requestData();
+//            }
+//        },1000,5000);
+
+        for(int i=0;i<number.length;i++){
+            Keshi keshi=new Keshi();
+            keshi.setName(name[i]);
+            keshi.setNumber((new Integer(number[i])).toString());
+            keshiLists.add(keshi);
+        }
+
+        if(adapter!=null){
+
+            adapter.notifyDataSetChanged();
+            listView.setSelection(0);
+            listView.setAdapter(adapter);
+
+        }
 
 
     }
@@ -180,7 +197,7 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
             selectNum=Integer.parseInt(keshiLists.get(position).getNumber());
           // Snackbar.make(listView,"选中"+selectKeshiname,Snackbar.LENGTH_SHORT).show();
             showDocter(selectKeshiname);
-
+            ID=position;//记录当前位置
     }
 
     //医生选择对话框
@@ -200,7 +217,7 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
             public void onClick(View v) {
 
            Integer I=new Integer(selectNum+1);
-            String num="您当前的排序号为："+I.toString();
+            String num=I.toString();
            //对话框提示
             showMyDialog(num);
 
@@ -211,7 +228,7 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
             }
         });
 
-        popuWindow=new PopupWindow(poplayout,900,900,true);
+        popuWindow=new PopupWindow(poplayout,600,500,true);
         popuWindow.setBackgroundDrawable(new BitmapDrawable());
         popuWindow.setFocusable(true);
         popuWindow.setOutsideTouchable(true);
@@ -220,13 +237,13 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
     }
 
 
-     private void showMyDialog(String num){
+     private void showMyDialog(final String num){
 
          popuWindow.dismiss();
 
          AlertDialog.Builder dialog=new AlertDialog.Builder(CallNumActivity.this);
          dialog.setTitle("提示");
-         dialog.setMessage(num);
+         dialog.setMessage("您当前的排序号为："+num);
          dialog.setCancelable(false);
          dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
              @Override
@@ -235,6 +252,16 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
 
                  //准备提交当前号码
                  // postData(selectKeshiname,(selectNum+1));
+
+                 keshiLists.get(ID).setNumber(num);
+                 if(adapter!=null){
+
+                     adapter.notifyDataSetChanged();
+                     listView.setSelection(0);
+                     listView.setAdapter(adapter);
+
+                 }
+
              }
          });
          dialog.show();
@@ -248,7 +275,7 @@ public class CallNumActivity extends BaseActivity implements  AdapterView.OnItem
 
     @Override
     protected void onPause() {
-        timer.cancel();
+//        timer.cancel();
         super.onPause();
     }
 }

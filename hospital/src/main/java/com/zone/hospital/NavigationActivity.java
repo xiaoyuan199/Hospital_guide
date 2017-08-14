@@ -60,7 +60,6 @@ public class NavigationActivity extends BaseActivity2 {
 //        startActivity(new Intent(NavigationActivity.this, NavigationDetailActivity.class));
 //    }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

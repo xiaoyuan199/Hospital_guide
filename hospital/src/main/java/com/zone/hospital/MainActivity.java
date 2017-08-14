@@ -3,6 +3,7 @@ package com.zone.hospital;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
@@ -18,14 +19,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.zone.hospital.base.BaseActivity2;
 import com.zone.hospital.global.URLaddress;
 import com.zone.hospital.model.adapter.MyFragmentPageAdapter;
+import com.zone.hospital.model.bean.Yuyin;
 import com.zone.hospital.utils.SPUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -56,16 +68,19 @@ public class MainActivity extends BaseActivity2 {
     NsdManager.DiscoveryListener mDiscoveryListener;
     NsdManager.ResolveListener mResolveListener;
     String TAG="111";
-
     String SERVICE_TYPE="_ros-master._tcp.";
     String mServiceName="NsdChat";
-
     int port;
     InetAddress host;
-
     NsdServiceInfo mService;
 
     public  boolean isfinish=true;
+    Timer timer;
+    RequestQueue mqueue;
+
+
+
+
 
     @Override
     public int setLayoutId() {
@@ -261,21 +276,89 @@ public class MainActivity extends BaseActivity2 {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.inject(this);
+        mqueue= Volley.newRequestQueue(this);
+
+
+
+//线程用于发现服务
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-
-
                     dicoverservice();
-
 
             }
         }).start();
-        Log.d(TAG, "Service discovery started");
+
+
+
+        //线程为监听语音的
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                timer=new Timer();
+//                timer.schedule(new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        requestdata();
+//                    }
+//                },1000,1000*10);
+//            }
+//        }).start();
+
+
     }
 
-    private void dicoverservice() {
+
+
+////请求语音的数据
+    private void requestdata() {
+
+        StringRequest request=new StringRequest(Request.Method.GET, "http://192.168.8.109/get_data.json",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                try{
+//                        //Json的解析类对象
+//                   JsonParser parser = new JsonParser();
+//                        //将JSON的String 转成一个JsonArray对象
+//                       JsonArray jsonArray = parser.parse(s).getAsJsonArray();
+
+                    String ss=new String(s.getBytes("ISO-8859-1"),"utf-8");
+                    Gson gson = new Gson();
+                     Yuyin data=gson.fromJson(ss,Yuyin.class);
+
+                    if(data.getName().equals("婚检")){
+                        Intent intent =new Intent("com.example.MY_BROADCAST");
+                        sendBroadcast(intent);
+
+                    }
+                    Log.d("MainActivity","---"+data.getName());
+
+                    }  catch (JsonSyntaxException E){
+
+                    Log.e("MainActivity","网络异常1");
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("MainActivity","网络异常2"+volleyError);
+
+            }
+        });
+        mqueue.add(request);
+
+    }
+
+
+
+
+    public void dicoverservice() {
 
 
         mNsdManager =(NsdManager)getBaseContext().getSystemService(Context.NSD_SERVICE);
@@ -362,7 +445,7 @@ public class MainActivity extends BaseActivity2 {
 
                 if(host!=null){
 
-               //  Toast.makeText(MainActivity.this,"端口："+port+"\n"+"IP:"+host,Toast.LENGTH_LONG).show();
+               //  Toast.makeText(MainActivity..this,"端口："+port+"\n"+"IP:"+host,Toast.LENGTH_LONG).show();
 
                     /**
                      * 导航位置服务器URL
@@ -383,5 +466,12 @@ public class MainActivity extends BaseActivity2 {
 
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+
 
 }

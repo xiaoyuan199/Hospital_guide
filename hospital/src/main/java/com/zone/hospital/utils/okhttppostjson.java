@@ -56,7 +56,14 @@ public class okhttppostjson  {
                     @Override
                     public void upProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
                         //这里回调上传进度(该回调在主线程,可以直接更新ui)
+
+                       }
+                       @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+
                     }
+
                 });
     }
 

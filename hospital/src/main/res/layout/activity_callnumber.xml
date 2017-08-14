@@ -28,8 +28,8 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         card_view:cardBackgroundColor="@color/colorTransparencyPin"
-        card_view:cardCornerRadius="25px"
-        card_view:cardElevation="25px"
+        card_view:cardCornerRadius="15px"
+        card_view:cardElevation="15px"
         android:alpha="160"
         card_view:cardUseCompatPadding="true">
 
